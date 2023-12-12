@@ -36,7 +36,7 @@ var exports = function mongooseI18nNeutral(schema, options) {
       return;
     }
 
-    if (!(schemaType instanceof mongoose.Schema.Types.String)) {
+    if (schemaType.instance !== 'String') {
       throw new mongoose.Error(
         'mongoose-i18n-neutral plugin applies only to Strings'
       );
