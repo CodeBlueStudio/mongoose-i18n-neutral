@@ -76,7 +76,8 @@ var exports = function mongooseI18nNeutral(schema, options) {
     }
 
     schema.virtual(path + '.i18n').get(function() {
-      return this.getValue(path);
+      return (this.$__getValue || this.getValue).call(this, path);
+      // return this.getValue(path);
     });
 
     var schemaI18nObject = {};
