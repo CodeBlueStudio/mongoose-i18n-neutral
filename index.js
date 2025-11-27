@@ -1,7 +1,6 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var extend = require('util')._extend;
 
 var exports = function mongooseI18nNeutral(schema, options) {
   if (
@@ -84,13 +83,13 @@ var exports = function mongooseI18nNeutral(schema, options) {
     schemaI18nObject[fieldName] = {};
 
     if (pluginOptions.useDefault) {
-      var i18nDefault = extend({}, schemaType.options);
+      var i18nDefault = Object.assign({}, schemaType.options);
       i18nDefault.required = true;
       schemaI18nObject[fieldName]['_def'] = i18nDefault;
     }
 
     pluginOptions.languages.forEach(function(lang) {
-      var schemaI18nLang = extend({}, schemaType.options);
+      var schemaI18nLang = Object.assign({}, schemaType.options);
       schemaI18nLang.required = false;
       schemaI18nObject[fieldName][lang] = schemaI18nLang;
     });
